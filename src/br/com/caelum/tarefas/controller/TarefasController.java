@@ -1,7 +1,11 @@
 package br.com.caelum.tarefas.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import br.com.caelum.tarefas.dao.JdbcTarefaDao;
 import br.com.caelum.tarefas.modelo.Tarefa;
@@ -23,4 +27,22 @@ public class TarefasController {
 		System.out.println("Chamando formulário");
 		return "tarefa/formulario";
 	}
+	
+	@RequestMapping("listaTarefas")
+	public String list(Model model) {
+		JdbcTarefaDao dao = new JdbcTarefaDao();
+		List<Tarefa> tarefas = dao.lista();
+		System.out.println("Recuperando a lista de tarefas");
+		
+		model.addAttribute("tarefas", tarefas);
+		return "tarefa/lista";
+	}
+	
+	/*@RequestMapping("listaTarefas")
+	public String lista() {
+		JdbcTarefaDao dao = new JdbcTarefaDao();
+		List<Tarefa> lista = dao.lista();
+		System.out.println("Recuperando a lista de tarefas");
+		return "tarefa/lista";
+	}*/
 }
