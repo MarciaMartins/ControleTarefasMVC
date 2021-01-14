@@ -38,11 +38,12 @@ public class TarefasController {
 		return "tarefa/lista";
 	}
 	
-	/*@RequestMapping("listaTarefas")
-	public String lista() {
+	@RequestMapping("removerTarefa")
+	public String remove(Tarefa tarefa) {
 		JdbcTarefaDao dao = new JdbcTarefaDao();
-		List<Tarefa> lista = dao.lista();
-		System.out.println("Recuperando a lista de tarefas");
-		return "tarefa/lista";
-	}*/
+		dao.remove(tarefa);
+		System.out.println("Remoção de tarefa");
+		return "forward:listaTarefas";
+	}
+	
 }

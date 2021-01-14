@@ -31,10 +31,11 @@
 						<td>Finalizado</td>
 				</c:if>
 				<td>
-							<fmt:formatDate
-														value="${tarefa.dataFinalizacao.time}"
-														pattern="dd/MM/yyyy"/>
+				<fmt:formatDate
+						value="${tarefa.dataFinalizacao.time}"
+						pattern="dd/MM/yyyy"/>
 				</td>
+				<td><a href="removerTarefa?id=${tarefa.id}">Remover</a></td>
 			</tr>
 		</c:forEach>
 		
