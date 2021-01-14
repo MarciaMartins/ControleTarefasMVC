@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+
 
 import br.com.caelum.tarefas.dao.JdbcTarefaDao;
 import br.com.caelum.tarefas.modelo.Tarefa;
@@ -19,7 +19,7 @@ public class TarefasController {
 		dao.adiciona(tarefa);
 		System.out.println(tarefa.getDescricao());
 		System.out.println("Adiciona tarefa.");
-		return "tarefa/tarefa-adicionada";
+		return "forward:listaTarefas";
 	}
 	
 	@RequestMapping("novaTarefa")
@@ -44,6 +44,24 @@ public class TarefasController {
 		dao.remove(tarefa);
 		System.out.println("Remoção de tarefa");
 		return "forward:listaTarefas";
+	}
+	
+	@RequestMapping("mostraTarefa")
+	public String mostra(Long id, Model model) {
+		JdbcTarefaDao dao = new JdbcTarefaDao();
+		System.out.println("Busca elemento id");
+		model.addAttribute("tarefa", dao.buscaPorId(id));
+		return "tarefa/mostra";
+	}
+	
+	@RequestMapping("alteraTarefa")
+	public String altera(Tarefa tarefa) {
+		System.out.println("ad");
+		JdbcTarefaDao dao = new JdbcTarefaDao();
+		System.out.println("Alterar elemento id");
+		dao.altera(tarefa);
+		
+		return "redirect:listaTarefas";
 	}
 	
 }

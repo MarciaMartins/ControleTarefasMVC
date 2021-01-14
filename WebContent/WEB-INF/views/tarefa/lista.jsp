@@ -36,6 +36,7 @@
 						pattern="dd/MM/yyyy"/>
 				</td>
 				<td><a href="removerTarefa?id=${tarefa.id}">Remover</a></td>
+				<td><a href="mostraTarefa?id=${tarefa.id}">Alterar</a></td>
 			</tr>
 		</c:forEach>
 		
